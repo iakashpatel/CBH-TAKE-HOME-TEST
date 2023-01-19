@@ -19,11 +19,11 @@ describe("deterministicPartitionKey", () => {
     expect(result.length).toBe(128);
   });
 
-  test("should return sha3-512 hash of event when partitionKey is not a string", () => {
+  test("should return stringified event.partitionKey when event.partitionKey is not a string", () => {
     const event = { partitionKey: { key: "testKey" } };
     const result = deterministicPartitionKey(event);
     expect(typeof result).toBe("string");
-    expect(result.length).toBe(128);
+    expect(result.length).toBe(17);
   });
 
   test("should return sha3-512 hash of partitionKey when its length is greater than 256", () => {
